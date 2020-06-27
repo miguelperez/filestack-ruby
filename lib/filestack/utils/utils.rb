@@ -194,7 +194,7 @@ module IntelligentUtils
   #
   # @return [Array]
   def run_intelligent_upload_flow(jobs, state)
-    bar = ProgressBar.new(jobs.length)
+    # bar = ProgressBar.new(jobs.length)
     generator = create_intelligent_generator(jobs)
     working_offset = FilestackConfig::DEFAULT_OFFSET_SIZE
     while generator.alive?
@@ -216,7 +216,7 @@ module IntelligentUtils
           state = run_intelligent_uploads(part, state)
         end
         raise "Upload has failed. Please try again later." unless state.ok
-        bar.increment!
+        # bar.increment!
       end
     end
   end

@@ -5,7 +5,7 @@ require 'mimemagic'
 require 'json'
 require 'parallel'
 require 'typhoeus'
-require 'progress_bar'
+# require 'progress_bar'
 require 'filestack/config'
 require 'filestack/utils/utils'
 
@@ -173,13 +173,13 @@ module MultipartUploadUtils
   #
   # @return [Array]                            Array of parts/etags strings
   def run_uploads(jobs, apikey, filepath, options)
-    bar = ProgressBar.new(jobs.length)
+    # bar = ProgressBar.new(jobs.length)
     results = Parallel.map(jobs, in_threads: 4) do |job|
       response = upload_chunk(
         job, apikey, filepath, options
       )
       if response.code == 200
-        bar.increment!
+        # bar.increment!
         part = job[:part]
         etag = response.headers[:etag]
         "#{part}:#{etag}"
